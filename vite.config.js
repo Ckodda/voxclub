@@ -10,6 +10,12 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-        svelte()
+        svelte({
+            compilerOptions:{
+                compatibility:{
+                    componentApi:4,
+                }
+            }
+        })
     ],
 });
