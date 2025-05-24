@@ -89,56 +89,59 @@
 </script>
 
 <App>
-    <Card class="max-w-md mx-auto mt-10 shadow">
-        <form on:submit|preventDefault={enviarFormulario} class="space-y-4">
-            <div>
-                <Label for="codigo">Código</Label>
-                <Input
-                    id="codigo"
-                    placeholder="Ingresa o escanea un código"
-                    bind:value={codigo}
-                    required
-                />
-            </div>
+    <div class="flex flex-col items-center justify-center">
+        <Card class="mt-10 shadow p-4 ">
+            <form on:submit|preventDefault={enviarFormulario} class="space-y-4">
+                <div>
+                    <Label for="codigo">Código</Label>
+                    <Input
+                        id="codigo"
+                        placeholder="Ingresa o escanea un código"
+                        bind:value={codigo}
+                        required
+                    />
+                </div>
 
-            <div class="flex gap-4">
-                <Button
-                    type="button"
-                    color="info"
-                    onclick={iniciarEscaneo}
-                    disabled={escaneando}
-                >
-                    {escaneando ? "Escaneando..." : "Escanear QR"}
-                </Button>
+                <div class="flex gap-4">
+                    <Button
+                        type="button"
+                        color="light"
+                        
+                        onclick={iniciarEscaneo}
+                        disabled={escaneando}
+                    >
+                        {escaneando ? "Escaneando..." : "Escanear QR"}
+                    </Button>
 
-                <Button type="submit" color="success" disabled={!codigo}>
-                    Enviar
-                </Button>
-            </div>
-        </form>
+                    <Button type="submit" color="blue" disabled={!codigo}>
+                        Enviar
+                    </Button>
+                </div>
+            </form>
 
-        {#if escaneando}
-            <div class="mt-6 space-y-4">
-                <video
-                    bind:this={videoRef}
-                    width="100%"
-                    height="300"
-                    style="border:1px solid #ccc; border-radius: 8px;"
-                    autoplay
-                    muted
-                ></video>
+            {#if escaneando}
+                <div class="mt-6 space-y-4">
+                    <video
+                        bind:this={videoRef}
+                        width="100%"
+                        height="300"
+                        style="border:1px solid #ccc; border-radius: 8px;"
+                        autoplay
+                        muted
+                    ></video>
 
-                <Button color="gray" on:click={detenerEscaneo}>
-                    Cancelar escaneo
-                </Button>
-            </div>
-        {/if}
+                    <Button color="gray" onclick={detenerEscaneo}>
+                        Cancelar escaneo
+                    </Button>
+                </div>
+            {/if}
 
-        {#if codigo && !escaneando}
-            <div class="mt-4 text-sm text-gray-700">
-                <strong>Código detectado:</strong>
-                {codigo}
-            </div>
-        {/if}
-    </Card>
+            {#if codigo && !escaneando}
+                <div class="mt-4 text-sm text-gray-700">
+                    <strong>Código detectado:</strong>
+                    {codigo}
+                </div>
+            {/if}
+        </Card>
+    </div>
 </App>

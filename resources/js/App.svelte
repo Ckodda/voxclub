@@ -5,6 +5,6 @@
 <header>
     <Navbar></Navbar>
 </header>
-<main>
+<main class="p-2">
     <slot/>
 </main>
